@@ -40,7 +40,7 @@
         </dependency>
         
         <!--database-->
-        <dependency>
+<!--        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
@@ -48,7 +48,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
+        </dependency>-->
         
         <!--validation-->
         <dependency>
@@ -97,6 +97,12 @@
             <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
         
+        <!-- email -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+        
     </dependencies>
     <build>
         <plugins>
@@ -127,7 +133,7 @@
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>libs/</classpathPrefix>
                             <mainClass>
-                                com.kalsym.order.service.EmailServiceApplication
+                                com.kalsym.email.service.EmailServiceApplication
                             </mainClass>
                         </manifest>
                     </archive>
@@ -135,15 +141,5 @@
                 </configuration>
             </plugin>
         </plugins>
-<!--        <resources>
-            <resource>
-                <filtering>true</filtering>
-                <directory>./</directory>
-                <includes>
-                    <include>application.properties</include>
-                    <include resource="logback.xml"/>
-                </includes>
-            </resource>
-        </resources>-->
     </build>
 </project>
