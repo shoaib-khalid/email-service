@@ -1,2 +1,15 @@
-D:\XpDevRepo\email-service\src\main\java\com\kalsym\email\service\controller\HelloEmailController.java
-D:\XpDevRepo\email-service\src\main\java\com\kalsym\email\service\EmailServiceApplication.java
+D:\kalsym-repo\Symplified\email-service\src\main\java\com\kalsym\email\service\configs\SessionAuthenticationEntryPoint.java
+D:\kalsym-repo\Symplified\email-service\src\main\java\com\kalsym\email\service\controller\EmailController.java
+D:\kalsym-repo\Symplified\email-service\src\main\java\com\kalsym\email\service\EmailServiceApplication.java
+D:\kalsym-repo\Symplified\email-service\src\main\java\com\kalsym\email\service\model\Session.java
+D:\kalsym-repo\Symplified\email-service\src\main\java\com\kalsym\email\service\ListenerBean.java
+D:\kalsym-repo\Symplified\email-service\src\main\java\com\kalsym\email\service\model\EmailBody.java
+D:\kalsym-repo\Symplified\email-service\src\main\java\com\kalsym\email\service\service\MySQLUserDetailsService.java
+D:\kalsym-repo\Symplified\email-service\src\main\java\com\kalsym\email\service\model\Auth.java
+D:\kalsym-repo\Symplified\email-service\src\main\java\com\kalsym\email\service\util\DateTimeUtil.java
+D:\kalsym-repo\Symplified\email-service\src\main\java\com\kalsym\email\service\configs\WebSecurityConfig.java
+D:\kalsym-repo\Symplified\email-service\src\main\java\com\kalsym\email\service\filter\SessionRequestFilter.java
+D:\kalsym-repo\Symplified\email-service\src\main\java\com\kalsym\email\service\model\MySQLUserDetails.java
+D:\kalsym-repo\Symplified\email-service\src\main\java\com\kalsym\email\service\model\HttpReponse.java
+D:\kalsym-repo\Symplified\email-service\src\main\java\com\kalsym\email\service\configs\SwaggerConfig.java
+D:\kalsym-repo\Symplified\email-service\src\main\java\com\kalsym\email\service\util\Logger.java
