@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.kalsym.email.service.model;
+package com.kalsym.email.service.model.order;
 
+import com.kalsym.email.service.model.*;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 
@@ -17,14 +18,15 @@ import lombok.ToString;
  *
  * @author saros
  */
-
 @Getter
 @Setter
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @ToString
-public class EmailBody {
-    private String[] to;
-    private String subject;
-    private String body;
+public class OrderItem {
+
+    private String name;
+    private String priceSingle;
+    private String quantity;
+    private String priceTotal;
 }
