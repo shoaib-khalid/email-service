@@ -83,7 +83,7 @@ public class EmailUtil {
         }
         body = body.replace("{{item-list}}", itemList);
 
-        body = body.replace("{{sub-total}}", bodyContent.getSubTotal());
+        body = body.replace("{{sub-total}}", bodyContent.getTotal());
 
         return body;
     }
@@ -119,7 +119,7 @@ public class EmailUtil {
         }
         body = body.replace("{{item-list}}", itemList);
 
-        body = body.replace("{{sub-total}}", bodyContent.getSubTotal());
+        body = body.replace("{{sub-total}}", bodyContent.getTotal());
 
         return body;
     }
@@ -155,7 +155,7 @@ public class EmailUtil {
         }
         body = body.replace("{{item-list}}", itemList);
 
-        body = body.replace("{{sub-total}}", bodyContent.getSubTotal());
+        body = body.replace("{{sub-total}}", bodyContent.getTotal());
 
         return body;
     }
@@ -190,7 +190,7 @@ public class EmailUtil {
 //        }
         body = body.replace("{{item-list}}", itemList);
 
-        body = body.replace("{{sub-total}}", bodyContent.getSubTotal());
+        body = body.replace("{{sub-total}}", bodyContent.getTotal());
 
         return body;
     }
