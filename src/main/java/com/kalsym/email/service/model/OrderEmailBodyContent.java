@@ -59,5 +59,5 @@ public class OrderEmailBodyContent {
 
     private String invoiceId;
     private String deliveryCharges;
-    private String subTotal;
+    private String total;
 }
