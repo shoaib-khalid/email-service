@@ -25,8 +25,13 @@ import lombok.ToString;
 @ToString
 public class OrderItem {
 
-    private String name;
-    private String priceSingle;
-    private String quantity;
-    private String priceTotal;
+    private String orderId;
+    private String productId;
+    private Float price;
+    private Float productPrice;
+    private Float weight;
+    private String SKU;
+    private int quantity;
+    private String itemCode;
+    private String productName;
 }

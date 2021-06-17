@@ -1,13 +1,17 @@
+com\kalsym\email\service\model\AccountVerificationEmailBody$ActionType.class
 com\kalsym\email\service\controller\EmailController.class
+com\kalsym\email\service\util\EmailUtil$1.class
 com\kalsym\email\service\model\lalmove\Delivery.class
+com\kalsym\email\service\model\OrderEmailBodyContent.class
+com\kalsym\email\service\model\AccountVerificationEmailBody.class
 com\kalsym\email\service\model\order\OrderItem.class
 com\kalsym\email\service\model\Session.class
 com\kalsym\email\service\model\lalmove\Stop.class
 com\kalsym\email\service\configs\SwaggerConfig.class
 com\kalsym\email\service\model\lalmove\RequesterContact.class
-com\kalsym\email\service\model\EmailBodyContent$OrderStatus.class
 com\kalsym\email\service\model\lalmove\MsMY.class
 com\kalsym\email\service\ListenerBean.class
+com\kalsym\email\service\model\OrderEmailBodyContent$OrderStatus.class
 com\kalsym\email\service\configs\WebSecurityConfig.class
 com\kalsym\email\service\model\Email.class
 com\kalsym\email\service\model\lalmove\Location.class
@@ -20,7 +24,6 @@ com\kalsym\email\service\service\MySQLUserDetailsService.class
 com\kalsym\email\service\model\Auth.class
 com\kalsym\email\service\util\EmailUtil.class
 com\kalsym\email\service\ListenerBean$1Authority.class
-com\kalsym\email\service\model\EmailBodyContent.class
 com\kalsym\email\service\util\DateTimeUtil.class
 com\kalsym\email\service\model\HttpReponse.class
 com\kalsym\email\service\model\lalmove\Addresses.class

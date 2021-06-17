@@ -1,0 +1,99 @@
+<!--Store details-->
+<div style="background-color: #F8F8F8; padding: 1%; margin: 2;">
+    <div>
+        <h1>{{store-name}}</h1>
+        <h4>{{store-address}}</h4>
+    </div>
+</div>
+<!--Message-->
+<div style="background-color: #F8F8F8; padding: 1%; margin: 2;">
+    <div>
+        <span>
+            Your order is awaiting pickup at store.
+        </span>
+    </div>
+</div>
+
+<!--Purchase Details-->
+<div style="background-color: #F8F8F8; padding: 1%; margin: 2;">
+    <div>
+        <h4>
+            Purchase Details:
+        </h4>
+        <span>
+            <span style="font-weight: bold;">Invoice Number: </span>{{invoice-number}}
+        </span>
+        <br>
+        <table style="text-align: left;">
+            <thead>
+                <tr>
+                    <th scope="col">Item</th>
+                    <th scope="col">Price(RM)</th>
+                    <th scope="col">Quanity</th>
+                    <th scope="col">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{item-list}}
+                <tr>
+                    <td style="font-weight: bold;">Delivery Charges</td>
+                    <td></td>
+                    <td></td>
+                    <td>{{delivery-charges}}</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold;">Sub Total</td>
+                    <td></td>
+                    <td></td>
+                    <td>{{sub-total}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!--Delivery address-->
+<div style="background-color: #F8F8F8; padding: 1%; margin: 2;">
+    <div>
+        <h4>
+            Delivery Details:
+        </h4>
+        <span>
+            <span style="font-weight: bold;">Address: </span>{{delivery-address}}
+        </span>
+        <br>
+        <span>
+            <span style="font-weight: bold;">City: </span>{{delivery-city}}
+        </span>
+    </div>
+</div>
+
+
+<!--Customer support messsage payment-confirmation-->
+<div style="background-color: #F8F8F8; padding: 1%; margin: 2;">
+    <div>
+        <span>
+            If there is any discrepancy in your order, please contact us at: <a
+                href="mailto:support@symplified.com">support@symplified.com</a>
+        </span>
+    </div>
+</div>
+<!--Thanks messsage payment-confirmation-->
+<div style="background-color: #F8F8F8; padding: 1%; margin: 2;">
+    <div>
+        <span>
+            Thank you for your support. We look forward to serving you again in the future.
+        </span>
+    </div>
+</div>
+
+
+<!--Policy messsage refund-->
+<div style="background-color: #F8F8F8; padding: 1%; margin: 2;">
+    <div>
+        <span>
+            Is there something wrong with your Purchase? We love to help if you are requesting for a Refund.
+            Click <a href="mailto:support@symplified.com">here</a> to email us your request.
+        </span>
+    </div>
+</div>

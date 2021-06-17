@@ -22,7 +22,8 @@ import java.util.List;
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @ToString
-public class EmailBodyContent {
+public class OrderEmailBodyContent {
+   
 
     public enum OrderStatus {
         DELIVERED_TO_CUSTOMER("Order Delivered"),
@@ -31,7 +32,12 @@ public class EmailBodyContent {
         CANCELED_BY_CUSTOMER("Order cancelation confirmed"),
         READY_FOR_DELIVERY("Order is processed and awating delivery"),
         RECEIVED_AT_STORE("Order received at store"),
-        REFUNDED("Refund confirmation");
+        REFUNDED("Refund confirmation"),
+        REQUESTING_DELIVERY_FAILED("Dlivery failed"),
+        AWAITING_PICKUP("Order is awaiting pickup"),
+        BEING_PREPARED("Order is being processed"),
+        REJECTED_BY_STORE("Order was not accepted by store"),
+        FAILED("Order palcement failed");
 
         public final String label;
 
