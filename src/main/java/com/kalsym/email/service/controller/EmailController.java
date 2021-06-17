@@ -53,9 +53,9 @@ public class EmailController {
     @Value("${symplified.logo.path:https://www.kalsym.com/sym-logo.png}")
     private String symplifiedLogoPath;
 
-    @PostMapping(path = {"/no-reply"}, name = "post-email-noreply")
-    @PreAuthorize("hasAnyAuthority('post-email-noreply', 'all')")
-    public ResponseEntity<HttpReponse> postNoReplyEmail(HttpServletRequest request,
+    @PostMapping(path = {"/no-reply/orders"}, name = "post-email-noreply-orders")
+    @PreAuthorize("hasAnyAuthority('post-email-noreply-orders', 'all')")
+    public ResponseEntity<HttpReponse> postNoReplyEmailForOrders(HttpServletRequest request,
             @RequestBody Email body) {
         String logprefix = request.getRequestURI();
         HttpReponse response = new HttpReponse(request.getRequestURI());
@@ -69,12 +69,12 @@ public class EmailController {
             MimeMessageHelper helper;
             helper = new MimeMessageHelper(message, true);
 
-            String emailBody = EmailUtil.generateEmail(body.getBody(), emailTemplatePath, symplifiedLogoPath);
+            String emailBody = EmailUtil.generateOrderEmail(body.getBody(), emailTemplatePath, symplifiedLogoPath);
 
             helper.setFrom(noReplyFrom);
             helper.setTo(body.getTo());
             helper.setText(emailBody, true);
-            Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email subject: " + body.getSubject(), "");
+            Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email subject: " + message.getSubject(), "");
 
             mailSender.send(message);
             Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email sent from: " + noReplyFrom, "");
@@ -91,37 +91,31 @@ public class EmailController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-    @PostMapping(path = {"/lala-move"}, name = "post-test-lalamove")
-    @PreAuthorize("hasAnyAuthority('post-test-lalamove', 'all')")
-    public ResponseEntity<HttpReponse> postTestLalamove(HttpServletRequest request,
-            @RequestBody TestModel body) {
+    @PostMapping(path = {"/no-reply/user-account"}, name = "post-email-noreply-user-account")
+    @PreAuthorize("hasAnyAuthority('post-email-noreply-user-account', 'all')")
+    public ResponseEntity<HttpReponse> postNoReplyEmail(HttpServletRequest request,
+            @RequestBody Email body) {
         String logprefix = request.getRequestURI();
         HttpReponse response = new HttpReponse(request.getRequestURI());
         Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "body: " + body, "");
 
         try {
 
-            RestTemplate restTemplate = new RestTemplate();
+            MimeMessage message = mailSender.createMimeMessage();
 
-            HttpHeaders headers = new HttpHeaders();
-            headers.add("Content-Type", "application/json");
-            String auth = "hmac 6e4e7adb5797632e54172dc2dd2ca748:1623836317245:9cca24efe604d44c5f034cee1bfc1b851efaa157e0607a861aac5c66b27685c0";
-            headers.add("Authorization", auth);
-            headers.add("X-LLM-Country", "MY_KUL");
-            headers.add("Accept", "*/*");
+            message.setSubject(body.getUserAccountBody().getActionType().label);
+            MimeMessageHelper helper;
+            helper = new MimeMessageHelper(message, true);
 
-            HttpEntity<TestModel> entity;
-            entity = new HttpEntity<>(body, headers);
-            
-//            headers.setContentType(MediaType.APPLICATION_JSON);
+            String emailBody = EmailUtil.generateAccountEmail(body.getUserAccountBody(), emailTemplatePath, symplifiedLogoPath);
 
-            String url = "https://rest.sandbox.lalamove.com/v2/quotations";
-            Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "url: " + url, "");
+            helper.setFrom(noReplyFrom);
+            helper.setTo(body.getTo());
+            helper.setText(emailBody, true);
+            Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email subject: " + message.getSubject(), "");
 
-            Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "entity: " + entity, "");
-
-            ResponseEntity<String> res = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
-            Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "res: " + res.toString(), "");
+            mailSender.send(message);
+            Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email sent from: " + noReplyFrom, "");
 
         } catch (Exception e) {
             Logger.application.error(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email could not be send", "", e);
@@ -129,8 +123,50 @@ public class EmailController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
 
+        Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email sent to: " + Arrays.toString(body.getTo()), "");
+
         response.setSuccessStatus(HttpStatus.OK);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
+//    @PostMapping(path = {"/lala-move"}, name = "post-test-lalamove")
+//    @PreAuthorize("hasAnyAuthority('post-test-lalamove', 'all')")
+//    public ResponseEntity<HttpReponse> postTestLalamove(HttpServletRequest request,
+//            @RequestBody TestModel body) {
+//        String logprefix = request.getRequestURI();
+//        HttpReponse response = new HttpReponse(request.getRequestURI());
+//        Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "body: " + body, "");
+//
+//        try {
+//
+//            RestTemplate restTemplate = new RestTemplate();
+//
+//            HttpHeaders headers = new HttpHeaders();
+//            headers.add("Content-Type", "application/json");
+//            String auth = "hmac 6e4e7adb5797632e54172dc2dd2ca748:1623836317245:9cca24efe604d44c5f034cee1bfc1b851efaa157e0607a861aac5c66b27685c0";
+//            headers.add("Authorization", auth);
+//            headers.add("X-LLM-Country", "MY_KUL");
+//            headers.add("Accept", "*/*");
+//
+//            HttpEntity<TestModel> entity;
+//            entity = new HttpEntity<>(body, headers);
+//
+////            headers.setContentType(MediaType.APPLICATION_JSON);
+//            String url = "https://rest.sandbox.lalamove.com/v2/quotations";
+//            Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "url: " + url, "");
+//
+//            Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "entity: " + entity, "");
+//
+//            ResponseEntity<String> res = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
+//            Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "res: " + res.toString(), "");
+//
+//        } catch (Exception e) {
+//            Logger.application.error(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email could not be send", "", e);
+//            response.setErrorStatus(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+//        }
+//
+//        response.setSuccessStatus(HttpStatus.OK);
+//        return ResponseEntity.status(HttpStatus.OK).body(response);
+//    }
 }
