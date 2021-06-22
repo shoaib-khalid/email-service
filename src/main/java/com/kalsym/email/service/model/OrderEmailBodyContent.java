@@ -46,6 +46,8 @@ public class OrderEmailBodyContent {
         }
     }
     private String title;
+    private String logoUrl;
+    private String currency;
     private String storeName;
     private String storeAddress;
 
