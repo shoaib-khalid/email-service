@@ -69,7 +69,12 @@ public class EmailController {
             MimeMessageHelper helper;
             helper = new MimeMessageHelper(message, true);
 
-            String emailBody = EmailUtil.generateOrderEmail(body.getBody(), emailTemplatePath, symplifiedLogoPath);
+            String logoUrl = body.getBody().getLogoUrl();
+            if (logoUrl == null) {
+                logoUrl = symplifiedLogoPath;
+            }
+
+            String emailBody = EmailUtil.generateOrderEmail(body.getBody(), emailTemplatePath, logoUrl);
 
             helper.setFrom(noReplyFrom);
             helper.setTo(body.getTo());
