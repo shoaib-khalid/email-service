@@ -59,6 +59,9 @@
         <h4>
             Delivery Details:
         </h4>
+        <p>
+            You can track your order <a href="{{tracking-url}}">here</a>.
+        </p>
         <span>
             <span style="font-weight: bold;">Address: </span>{{delivery-address}}
         </span>
@@ -74,8 +77,7 @@
 <div style="background-color: #F8F8F8; padding: 1%; margin: 2;">
     <div>
         <span>
-            If there is any discrepancy in your order, please contact us at: <a
-                href="mailto:support@symplified.com">support@symplified.com</a>
+            If there is any discrepancy in your order, please contact us at: {{store-contact}}
         </span>
     </div>
 </div>
@@ -94,7 +96,7 @@
     <div>
         <span>
             Is there something wrong with your Purchase? We love to help if you are requesting for a Refund.
-            Click <a href="mailto:support@symplified.com">here</a> to email us your request.
+            Call {{store-contact}} for your request.
         </span>
     </div>
 </div>

@@ -23,7 +23,6 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @ToString
 public class OrderEmailBodyContent {
-   
 
     public enum OrderStatus {
         DELIVERED_TO_CUSTOMER("Order Delivered"),
@@ -47,6 +46,9 @@ public class OrderEmailBodyContent {
     }
     private String title;
     private String logoUrl;
+    private String customerTrackingUrl;
+    private String merchantTrackingUrl;
+    private String storeContact;
     private String currency;
     private String storeName;
     private String storeAddress;

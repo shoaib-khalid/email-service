@@ -76,6 +76,18 @@ public class EmailController {
 
             String emailBody = EmailUtil.generateOrderEmail(body.getBody(), emailTemplatePath, logoUrl);
 
+            Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "customerTrackingUrl: " + body.getBody().getCustomerTrackingUrl(), "");
+
+            if (body.getBody().getCustomerTrackingUrl() != null) {
+                emailBody = emailBody.replace("{{tracking-url}}", body.getBody().getCustomerTrackingUrl());
+            }
+
+            Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "storeContact: " + body.getBody().getStoreContact(), "");
+
+            if (body.getBody().getStoreContact() != null) {
+                emailBody = emailBody.replace("{{store-contact}}", body.getBody().getStoreContact());
+            }
+
             helper.setFrom(noReplyFrom);
             helper.setTo(body.getTo());
             helper.setText(emailBody, true);
