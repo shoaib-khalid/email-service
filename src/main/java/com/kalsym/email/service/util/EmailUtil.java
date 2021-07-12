@@ -45,6 +45,9 @@ public class EmailUtil {
                 case AWAITING_PICKUP:
                     emailContent = header + generateAwaitingPickupEmail(bodyContent, emailTemplatePath) + footer;
                     break;
+                case READY_FOR_DELIVERY:
+                    emailContent = header + generateReadyForDeliveryEmail(bodyContent, emailTemplatePath) + footer;
+                    break;
                 case DELIVERED_TO_CUSTOMER:
                     emailContent = header + generateDeliveredToCustomerEmail(bodyContent, emailTemplatePath) + footer;
                     break;
@@ -53,14 +56,47 @@ public class EmailUtil {
             }
         }
 
-       
-
         return emailContent;
     }
 
     public static String generatePaymentConfirmationEmail(OrderEmailBodyContent bodyContent, String emailTemplatePath) throws FileNotFoundException {
 
         String body = fileContent(emailTemplatePath + "payment-confirmation-body.html");
+
+        body = body.replace("{{store-name}}", bodyContent.getStoreName());
+        body = body.replace("{{store-address}}", bodyContent.getStoreAddress());
+        body = body.replace("{{invoice-number}}", bodyContent.getInvoiceId());
+        body = body.replace("{{delivery-charges}}", bodyContent.getDeliveryCharges());
+        body = body.replace("{{delivery-address}}", bodyContent.getDeliveryAddress());
+        body = body.replace("{{delivery-city}}", bodyContent.getDeliveryCity());
+
+        String orderItem = "                <tr>\n"
+                + "                    <td>{{item-name}}</td>\n"
+                + "                    <td>{{item-price}}</td>\n"
+                + "                    <td>{{item-quantity}}</td>\n"
+                + "                    <td>{{item-total}}</td>\n"
+                + "                </tr>";
+
+        String itemList = "";
+        for (OrderItem oi : bodyContent.getOrderItems()) {
+            String item = orderItem;
+            item = item.replace("{{item-name}}", oi.getProductName());
+            item = item.replace("{{item-price}}", oi.getProductPrice() + "");
+            item = item.replace("{{item-quantity}}", oi.getQuantity() + "");
+            item = item.replace("{{item-total}}", oi.getPrice() + "");
+
+            itemList = itemList + item;
+        }
+        body = body.replace("{{item-list}}", itemList);
+
+        body = body.replace("{{sub-total}}", bodyContent.getTotal());
+
+        return body;
+    }
+
+    public static String generateReadyForDeliveryEmail(OrderEmailBodyContent bodyContent, String emailTemplatePath) throws FileNotFoundException {
+
+        String body = fileContent(emailTemplatePath + "ready-for-delivery-body.html");
 
         body = body.replace("{{store-name}}", bodyContent.getStoreName());
         body = body.replace("{{store-address}}", bodyContent.getStoreAddress());
