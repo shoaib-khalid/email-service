@@ -1,6 +1,5 @@
 package com.kalsym.email.service.controller;
 
-import com.kalsym.email.service.model.lalmove.TestModel;
 import com.kalsym.email.service.model.HttpReponse;
 import com.kalsym.email.service.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +20,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.kalsym.email.service.util.EmailUtil;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.web.client.RestTemplate;
 
 /**
  *
@@ -125,6 +119,44 @@ public class EmailController {
             helper = new MimeMessageHelper(message, true);
 
             String emailBody = EmailUtil.generateAccountEmail(body.getUserAccountBody(), emailTemplatePath, symplifiedLogoPath);
+
+            helper.setFrom(noReplyFrom);
+            helper.setTo(body.getTo());
+            helper.setText(emailBody, true);
+            Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email subject: " + message.getSubject(), "");
+
+            mailSender.send(message);
+            Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email sent from: " + noReplyFrom, "");
+
+        } catch (Exception e) {
+            Logger.application.error(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email could not be send", "", e);
+            response.setErrorStatus(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
+
+        Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email sent to: " + Arrays.toString(body.getTo()), "");
+
+        response.setSuccessStatus(HttpStatus.OK);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @PostMapping(path = {"/no-reply/promotion"}, name = "post-email-noreply-promotion")
+    @PreAuthorize("hasAnyAuthority('post-email-noreply-promotion', 'all')")
+    public ResponseEntity<HttpReponse> postNoReplyEmailPromotion(HttpServletRequest request,
+            @RequestBody Email body) {
+        String logprefix = request.getRequestURI();
+        HttpReponse response = new HttpReponse(request.getRequestURI());
+        Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "body: " + body, "");
+
+        try {
+
+            MimeMessage message = mailSender.createMimeMessage();
+
+            message.setSubject(body.getUserAccountBody().getActionType().label);
+            MimeMessageHelper helper;
+            helper = new MimeMessageHelper(message, true);
+
+            String emailBody = EmailUtil.generatePromotionEmail(emailTemplatePath, symplifiedLogoPath, body.getRawBody());
 
             helper.setFrom(noReplyFrom);
             helper.setTo(body.getTo());

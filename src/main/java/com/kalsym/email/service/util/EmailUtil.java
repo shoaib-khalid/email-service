@@ -318,4 +318,19 @@ public class EmailUtil {
         return body;
     }
 
+    public static String generatePromotionEmail(String emailTemplatePath, String symplifiedLogoPath, String bodyContent) throws FileNotFoundException {
+        String emailContent = "";
+
+        String header = fileContent(emailTemplatePath + "header.html");
+
+        header = header.replace("{{store-logo}}", symplifiedLogoPath);
+        header = header.replace("{{title}}", "Promotion");
+
+        String footer = fileContent(emailTemplatePath + "footer.html");
+
+        emailContent = header + bodyContent + footer;
+
+        return emailContent;
+    }
+
 }
