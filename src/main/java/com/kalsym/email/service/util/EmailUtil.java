@@ -61,9 +61,24 @@ public class EmailUtil {
         body = body.replace("{{store-name}}", bodyContent.getStoreName());
         body = body.replace("{{store-address}}", bodyContent.getStoreAddress());
         body = body.replace("{{invoice-number}}", bodyContent.getInvoiceId());
-        body = body.replace("{{delivery-charges}}", bodyContent.getDeliveryCharges());
-        body = body.replace("{{delivery-address}}", bodyContent.getDeliveryAddress());
-        body = body.replace("{{delivery-city}}", bodyContent.getDeliveryCity());
+
+        if (null != bodyContent.getInvoiceId()) {
+            body = body.replace("{{delivery-charges}}", bodyContent.getDeliveryCharges());
+        } else {
+            body = body.replace("{{delivery-charges}}", "N/A");
+        }
+
+        if (null != bodyContent.getDeliveryAddress()) {
+            body = body.replace("{{delivery-address}}", bodyContent.getDeliveryAddress());
+        } else {
+            body = body.replace("{{delivery-address}}", "N/A");
+        }
+
+        if (null != bodyContent.getDeliveryCity()) {
+            body = body.replace("{{delivery-city}}", bodyContent.getDeliveryCity());
+        } else {
+            body = body.replace("{{delivery-city}}", "N/A");
+        }
 
         String orderItem = "                <tr>\n"
                 + "                    <td>{{item-name}}</td>\n"
