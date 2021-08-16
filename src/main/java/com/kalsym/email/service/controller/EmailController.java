@@ -59,7 +59,7 @@ public class EmailController {
 
             MimeMessage message = mailSender.createMimeMessage();
 
-            message.setSubject(body.getBody().getOrderStatus().label + " " + body.getBody().getInvoiceId());
+            message.setSubject(body.getBody().getOrderStatus().label);
             MimeMessageHelper helper;
             helper = new MimeMessageHelper(message, true);
 
