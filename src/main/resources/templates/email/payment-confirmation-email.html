@@ -1,3 +1,8 @@
+<div style="text-align: center;">
+    <img src="{{store-logo}}" alt="store-logo" width="200">
+    <br>
+    <h3>Payment Confirmed</h3>
+</div>
 <!--Store details-->
 <div style="background-color: #F8F8F8; padding: 5px; margin: 2;">
     <div>
@@ -9,11 +14,12 @@
 <div style="background-color: #F8F8F8; padding: 5px; margin: 2;">
     <div>
         <span>
-            Your order is awaiting pickup at store.
+            Good day to you. We thank you for your payment and for shopping with us. Your purchase has been
+            confirmed as per details below:
         </span>
     </div>
 </div>
-
+<hr>
 <!--Purchase Details-->
 <div style="background-color: #F8F8F8; padding: 5px; margin: 2;">
     <div>
@@ -42,7 +48,7 @@
                     <td>{{delivery-charges}}</td>
                 </tr>
                 <tr>
-                    <td style="font-weight: bold;">Sub Total</td>
+                    <td style="font-weight: bold;">Total</td>
                     <td></td>
                     <td></td>
                     <td>{{sub-total}}</td>
@@ -73,8 +79,7 @@
 <div style="background-color: #F8F8F8; padding: 5px; margin: 2;">
     <div>
         <span>
-            If there is any discrepancy in your order, please contact us at: <a
-                href="mailto:support@symplified.com">support@symplified.com</a>
+            If there is any discrepancy in your order, please contact us at: {{store-contact}}
         </span>
     </div>
 </div>
@@ -93,7 +98,14 @@
     <div>
         <span>
             Is there something wrong with your Purchase? We love to help if you are requesting for a Refund.
-            Click <a href="mailto:support@symplified.com">here</a> to email us your request.
+            Call {{store-contact}} for your request.
         </span>
     </div>
+</div>
+
+<hr>
+<div style="background-color: #F8F8F8; padding: 5px; margin: 0.5;">
+    <span>
+        Powered by <a href="https://symplified.biz/">SYMplified</a>
+    </span>
 </div>
