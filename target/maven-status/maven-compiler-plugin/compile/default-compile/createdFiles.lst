@@ -9,7 +9,6 @@ com\kalsym\email\service\model\Session.class
 com\kalsym\email\service\model\lalmove\Stop.class
 com\kalsym\email\service\configs\SwaggerConfig.class
 com\kalsym\email\service\model\lalmove\RequesterContact.class
-.netbeans_automatic_build
 com\kalsym\email\service\model\lalmove\MsMY.class
 com\kalsym\email\service\ListenerBean.class
 com\kalsym\email\service\model\OrderEmailBodyContent$OrderStatus.class
