@@ -46,6 +46,9 @@ public class EmailUtil {
                 case DELIVERED_TO_CUSTOMER:
                     emailContent = header + generateDeliveredToCustomerEmail(bodyContent, emailTemplatePath) + footer;
                     break;
+                case CANCELED_BY_MERCHANT:
+                    emailContent = header + generatePaymentConfirmationEmail(bodyContent, emailTemplatePath) + footer;
+                    break;
                 default:
                     break;
             }
