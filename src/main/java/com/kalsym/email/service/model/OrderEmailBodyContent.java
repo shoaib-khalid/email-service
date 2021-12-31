@@ -29,6 +29,7 @@ public class OrderEmailBodyContent {
         PAYMENT_CONFIRMED("Payment Confirmed"),
         BEING_DELIVERED("Order on its way!"),
         CANCELED_BY_CUSTOMER("Order cancelation confirmed"),
+        CANCELED_BY_MERCHANT("Order cancel by merchant"),
         READY_FOR_DELIVERY("Order is processed and awating delivery"),
         RECEIVED_AT_STORE("Order received at store"),
         REFUNDED("Refund confirmation"),
