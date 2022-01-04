@@ -1,5 +1,12 @@
 ##################################################
-# email-3.0.5-SNAPSHOT | 31-Dec-2021
+# email-3.0.7-SNAPSHOT | 04-Jan-2022
+##################################################
+### Code Changes:
+Add request parameter 'from' to allow override from address by client
+
+
+##################################################
+# email-3.0.6-SNAPSHOT | 31-Dec-2021
 ##################################################
 ### Code Changes:
 Add new OrderStatus enum CANCELED_BY_MERCHANT
