@@ -81,8 +81,13 @@ public class EmailController {
             if (body.getBody().getStoreContact() != null) {
                 emailBody = emailBody.replace("{{store-contact}}", body.getBody().getStoreContact());
             }
-
-            helper.setFrom(noReplyFrom);
+            
+            if (body.getFrom()!=null) {
+                helper.setFrom(body.getFrom());
+            } else {
+                helper.setFrom(noReplyFrom);
+            }
+            
             helper.setTo(body.getTo());
             helper.setText(emailBody, true);
             Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email subject: " + message.getSubject(), "");
@@ -119,8 +124,13 @@ public class EmailController {
             helper = new MimeMessageHelper(message, true);
 
             String emailBody = EmailUtil.generateAccountEmail(body.getUserAccountBody(), emailTemplatePath, symplifiedLogoPath);
-
-            helper.setFrom(noReplyFrom);
+            
+            if (body.getFrom()!=null) {
+                helper.setFrom(body.getFrom());
+            } else {
+                helper.setFrom(noReplyFrom);
+            }
+             
             helper.setTo(body.getTo());
             helper.setText(emailBody, true);
             Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email subject: " + message.getSubject(), "");
@@ -157,8 +167,13 @@ public class EmailController {
             helper = new MimeMessageHelper(message, true);
 
             String emailBody = EmailUtil.generatePromotionEmail(emailTemplatePath, symplifiedLogoPath, body.getRawBody());
-
-            helper.setFrom(noReplyFrom);
+            
+            if (body.getFrom()!=null) {
+                helper.setFrom(body.getFrom());
+            } else {
+                helper.setFrom(noReplyFrom);
+            }
+            
             helper.setTo(body.getTo());
             helper.setText(emailBody, true);
             Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email subject: " + message.getSubject(), "");
@@ -190,8 +205,12 @@ public class EmailController {
             MimeMessage message = mailSender.createMimeMessage();
             message.setSubject(body.getBody().getOrderStatus().label);
             MimeMessageHelper helper;
-            helper = new MimeMessageHelper(message, true);            
-            helper.setFrom(noReplyFrom);
+            helper = new MimeMessageHelper(message, true); 
+            if (body.getFrom()!=null) {
+                helper.setFrom(body.getFrom());
+            } else {
+                helper.setFrom(noReplyFrom);
+            }
             helper.setTo(body.getTo());
             helper.setText(body.getRawBody(), true);
             Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email subject: " + message.getSubject(), "");
