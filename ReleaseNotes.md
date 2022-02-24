@@ -1,4 +1,11 @@
 ##################################################
+# email-3.0.9-SNAPSHOT | 24-Feb-2022
+##################################################
+### Code Changes:
+Set Symplified logo path to https://symplified.biz/store-assets/symplified-logo-small.png 
+
+
+##################################################
 # email-3.0.8-SNAPSHOT | 24-Feb-2022
 ##################################################
 ### Code Changes:
