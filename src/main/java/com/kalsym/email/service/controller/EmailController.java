@@ -44,7 +44,7 @@ public class EmailController {
     @Value("${symplified.email.template.path:D:/kalsym-repo/Symplified/email-service/src/main/resources/templates/email/}")
     private String emailTemplatePath;
 
-    @Value("${symplified.logo.path:https://www.kalsym.com/sym-logo.png}")
+    @Value("${symplified.logo.path:https://symplified.biz/store-assets/symplified-logo-small.png}")
     private String symplifiedLogoPath;
 
     @PostMapping(path = {"/no-reply/orders"}, name = "post-email-noreply-orders")
