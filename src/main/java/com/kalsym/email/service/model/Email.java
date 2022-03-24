@@ -28,5 +28,6 @@ public class Email {
     private String rawBody;
     private OrderEmailBodyContent body;
     private AccountVerificationEmailBody userAccountBody;
+    private String domain;
     
 }

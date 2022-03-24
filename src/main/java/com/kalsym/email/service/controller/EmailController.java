@@ -46,6 +46,12 @@ public class EmailController {
 
     @Value("${symplified.logo.path:https://symplified.biz/store-assets/symplified-logo-small.png}")
     private String symplifiedLogoPath;
+    
+    @Value("${symplified.logo.path:https://symplified.biz/store-assets/deliverin-logo-small.png}")
+    private String deliverinLogoPath;
+    
+    @Value("${symplified.logo.path:https://symplified.biz/store-assets/easydukan-logo-small.png}")
+    private String easydukanLogoPath;
 
     @PostMapping(path = {"/no-reply/orders"}, name = "post-email-noreply-orders")
     @PreAuthorize("hasAnyAuthority('post-email-noreply-orders', 'all')")
@@ -122,8 +128,21 @@ public class EmailController {
             message.setSubject(body.getUserAccountBody().getActionType().label);
             MimeMessageHelper helper;
             helper = new MimeMessageHelper(message, true);
-
-            String emailBody = EmailUtil.generateAccountEmail(body.getUserAccountBody(), emailTemplatePath, symplifiedLogoPath);
+            
+            String emailBody = null;
+            if (body.getDomain()!=null) {
+                String logoPath=symplifiedLogoPath;
+                if (body.getDomain().contains("symplified")) {
+                    logoPath = symplifiedLogoPath;
+                } else if (body.getDomain().contains("deliverin")) {
+                    logoPath = deliverinLogoPath;
+                } else if (body.getDomain().contains("easydukan")) {
+                    logoPath = easydukanLogoPath;
+                }
+                emailBody = EmailUtil.generateAccountEmail(body.getUserAccountBody(), emailTemplatePath, logoPath);
+            } else {
+                emailBody = EmailUtil.generateAccountEmail(body.getUserAccountBody(), emailTemplatePath, symplifiedLogoPath);
+            }
             
             if (body.getFrom()!=null) {
                 helper.setFrom(body.getFrom());
