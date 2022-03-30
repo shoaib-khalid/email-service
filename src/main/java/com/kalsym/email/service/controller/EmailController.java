@@ -93,8 +93,10 @@ public class EmailController {
                     helper.setFrom(body.getFrom(), body.getFromName());
                 else
                     helper.setFrom(body.getFrom());
+                Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email sent from: " +  body.getFrom()+ " fromName:"+ body.getFromName());
             } else {
                 helper.setFrom(noReplyFrom);
+                Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email sent from: " + noReplyFrom);
             }
             
             helper.setTo(body.getTo());
@@ -102,7 +104,7 @@ public class EmailController {
             Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email subject: " + message.getSubject(), "");
 
             mailSender.send(message);
-            Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email sent from: " + noReplyFrom, "");
+            
 
         } catch (Exception e) {
             Logger.application.error(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email could not be send", "", e);
@@ -152,8 +154,10 @@ public class EmailController {
                     helper.setFrom(body.getFrom(), body.getFromName());
                 else
                     helper.setFrom(body.getFrom());
+                Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email sent from: " +  body.getFrom()+ " fromName:"+ body.getFromName());
             } else {
                 helper.setFrom(noReplyFrom);
+                Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email sent from: " +  noReplyFrom);
             }
              
             helper.setTo(body.getTo());
@@ -161,8 +165,7 @@ public class EmailController {
             Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email subject: " + message.getSubject(), "");
 
             mailSender.send(message);
-            Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email sent from: " + noReplyFrom, "");
-
+           
         } catch (Exception e) {
             Logger.application.error(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email could not be send", "", e);
             response.setErrorStatus(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
@@ -198,8 +201,10 @@ public class EmailController {
                     helper.setFrom(body.getFrom(), body.getFromName());
                 else
                     helper.setFrom(body.getFrom());
+                Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email sent from: " +  body.getFrom()+ " fromName:"+ body.getFromName());
             } else {
                 helper.setFrom(noReplyFrom);
+                Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email sent from: " +  noReplyFrom);
             }
             
             helper.setTo(body.getTo());
@@ -207,8 +212,7 @@ public class EmailController {
             Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email subject: " + message.getSubject(), "");
 
             mailSender.send(message);
-            Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email sent from: " + noReplyFrom, "");
-
+            
         } catch (Exception e) {
             Logger.application.error(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email could not be send", "", e);
             response.setErrorStatus(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
@@ -239,14 +243,15 @@ public class EmailController {
                     helper.setFrom(body.getFrom(), body.getFromName());
                 else
                     helper.setFrom(body.getFrom());
+                Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email sent from: " +  body.getFrom()+ " fromName:"+ body.getFromName());
             } else {
                 helper.setFrom(noReplyFrom);
+                Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email sent noReplyFrom: " +  noReplyFrom);
             }
             helper.setTo(body.getTo());
             helper.setText(body.getRawBody(), true);
             Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email subject: " + message.getSubject(), "");
-            mailSender.send(message);
-            Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email sent from: " + noReplyFrom, "");
+            mailSender.send(message);            
         } catch (Exception e) {
             Logger.application.error(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email could not be send", "", e);
             response.setErrorStatus(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
