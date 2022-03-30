@@ -89,7 +89,10 @@ public class EmailController {
             }
             
             if (body.getFrom()!=null) {
-                helper.setFrom(body.getFrom());
+                if (body.getFromName()!=null)
+                    helper.setFrom(body.getFrom(), body.getFromName());
+                else
+                    helper.setFrom(body.getFrom());
             } else {
                 helper.setFrom(noReplyFrom);
             }
@@ -144,8 +147,11 @@ public class EmailController {
                 emailBody = EmailUtil.generateAccountEmail(body.getUserAccountBody(), emailTemplatePath, symplifiedLogoPath);
             }
             
-            if (body.getFrom()!=null) {
-                helper.setFrom(body.getFrom());
+             if (body.getFrom()!=null) {
+                if (body.getFromName()!=null)
+                    helper.setFrom(body.getFrom(), body.getFromName());
+                else
+                    helper.setFrom(body.getFrom());
             } else {
                 helper.setFrom(noReplyFrom);
             }
@@ -188,7 +194,10 @@ public class EmailController {
             String emailBody = EmailUtil.generatePromotionEmail(emailTemplatePath, symplifiedLogoPath, body.getRawBody());
             
             if (body.getFrom()!=null) {
-                helper.setFrom(body.getFrom());
+                if (body.getFromName()!=null)
+                    helper.setFrom(body.getFrom(), body.getFromName());
+                else
+                    helper.setFrom(body.getFrom());
             } else {
                 helper.setFrom(noReplyFrom);
             }
@@ -226,7 +235,10 @@ public class EmailController {
             MimeMessageHelper helper;
             helper = new MimeMessageHelper(message, true); 
             if (body.getFrom()!=null) {
-                helper.setFrom(body.getFrom());
+                if (body.getFromName()!=null)
+                    helper.setFrom(body.getFrom(), body.getFromName());
+                else
+                    helper.setFrom(body.getFrom());
             } else {
                 helper.setFrom(noReplyFrom);
             }
