@@ -73,9 +73,22 @@ public class EmailController {
             if (logoUrl == null) {
                 logoUrl = symplifiedLogoPath;
             }
-
-            String emailBody = EmailUtil.generateOrderEmail(body.getBody(), emailTemplatePath, logoUrl);
-
+            
+            String emailBody="";
+            if (body.getDomain()!=null) {
+                String logoPath=symplifiedLogoPath;
+                if (body.getDomain().contains("symplified")) {
+                    logoPath = symplifiedLogoPath;
+                } else if (body.getDomain().contains("deliverin")) {
+                    logoPath = deliverinLogoPath;
+                } else if (body.getDomain().contains("easydukan")) {
+                    logoPath = easydukanLogoPath;
+                }
+                emailBody = EmailUtil.generateOrderEmail(body.getBody(), emailTemplatePath, logoPath);
+            } else {
+                emailBody = EmailUtil.generateOrderEmail(body.getBody(), emailTemplatePath, symplifiedLogoPath);
+            }
+            
             Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "customerTrackingUrl: " + body.getBody().getCustomerTrackingUrl(), "");
 
             if (body.getBody().getCustomerTrackingUrl() != null) {
@@ -193,8 +206,21 @@ public class EmailController {
             message.setSubject(body.getUserAccountBody().getActionType().label);
             MimeMessageHelper helper;
             helper = new MimeMessageHelper(message, true);
-
-            String emailBody = EmailUtil.generatePromotionEmail(emailTemplatePath, symplifiedLogoPath, body.getRawBody());
+            
+            String emailBody="";
+            if (body.getDomain()!=null) {
+                String logoPath=symplifiedLogoPath;
+                if (body.getDomain().contains("symplified")) {
+                    logoPath = symplifiedLogoPath;
+                } else if (body.getDomain().contains("deliverin")) {
+                    logoPath = deliverinLogoPath;
+                } else if (body.getDomain().contains("easydukan")) {
+                    logoPath = easydukanLogoPath;
+                }
+                emailBody = EmailUtil.generatePromotionEmail(emailTemplatePath, logoPath, body.getRawBody());
+            } else {
+                emailBody = EmailUtil.generatePromotionEmail(emailTemplatePath, symplifiedLogoPath, body.getRawBody());
+            }
             
             if (body.getFrom()!=null) {
                 if (body.getFromName()!=null)
