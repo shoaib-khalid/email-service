@@ -275,7 +275,21 @@ public class EmailController {
                 Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email sent noReplyFrom: " +  noReplyFrom);
             }
             helper.setTo(body.getTo());
+            
+            
+            if (body.getDomain()!=null) {
+                String logoPath=symplifiedLogoPath;
+                if (body.getDomain().contains("symplified")) {
+                    logoPath = symplifiedLogoPath;
+                } else if (body.getDomain().contains("deliverin")) {
+                    logoPath = deliverinLogoPath;
+                } else if (body.getDomain().contains("easydukan")) {
+                    logoPath = easydukanLogoPath;
+                }
+                body.setRawBody(body.getRawBody().replace("{{store-logo}}", logoPath));                
+            } 
             helper.setText(body.getRawBody(), true);
+            
             Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email subject: " + message.getSubject(), "");
             mailSender.send(message);            
         } catch (Exception e) {
