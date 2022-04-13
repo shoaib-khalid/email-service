@@ -77,8 +77,10 @@ public class EmailController {
             String emailBody="";
             if (body.getDomain()!=null) {
                 String logoPath=symplifiedLogoPath;
-                if (body.getDomain().contains("symplified")) {
-                    logoPath = symplifiedLogoPath;
+                if (body.getDomain().contains("dev-my")) {
+                    logoPath = deliverinLogoPath;
+                } else if (body.getDomain().contains("dev-pk")) {
+                    logoPath = easydukanLogoPath;
                 } else if (body.getDomain().contains("deliverin")) {
                     logoPath = deliverinLogoPath;
                 } else if (body.getDomain().contains("easydukan")) {
@@ -150,8 +152,10 @@ public class EmailController {
             String emailBody = null;
             if (body.getDomain()!=null) {
                 String logoPath=symplifiedLogoPath;
-                if (body.getDomain().contains("symplified")) {
-                    logoPath = symplifiedLogoPath;
+                if (body.getDomain().contains("dev-my")) {
+                    logoPath = deliverinLogoPath;
+                } else if (body.getDomain().contains("dev-pk")) {
+                    logoPath = easydukanLogoPath;
                 } else if (body.getDomain().contains("deliverin")) {
                     logoPath = deliverinLogoPath;
                 } else if (body.getDomain().contains("easydukan")) {
@@ -210,8 +214,10 @@ public class EmailController {
             String emailBody="";
             if (body.getDomain()!=null) {
                 String logoPath=symplifiedLogoPath;
-                if (body.getDomain().contains("symplified")) {
-                    logoPath = symplifiedLogoPath;
+                if (body.getDomain().contains("dev-my")) {
+                    logoPath = deliverinLogoPath;
+                } else if (body.getDomain().contains("dev-pk")) {
+                    logoPath = easydukanLogoPath;
                 } else if (body.getDomain().contains("deliverin")) {
                     logoPath = deliverinLogoPath;
                 } else if (body.getDomain().contains("easydukan")) {
@@ -279,8 +285,10 @@ public class EmailController {
             
             if (body.getDomain()!=null) {
                 String logoPath=symplifiedLogoPath;
-                if (body.getDomain().contains("symplified")) {
-                    logoPath = symplifiedLogoPath;
+                if (body.getDomain().contains("dev-my")) {
+                    logoPath = deliverinLogoPath;
+                } else if (body.getDomain().contains("dev-pk")) {
+                    logoPath = easydukanLogoPath;
                 } else if (body.getDomain().contains("deliverin")) {
                     logoPath = deliverinLogoPath;
                 } else if (body.getDomain().contains("easydukan")) {
