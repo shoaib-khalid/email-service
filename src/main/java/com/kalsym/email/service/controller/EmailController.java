@@ -47,10 +47,10 @@ public class EmailController {
     @Value("${symplified.logo.path:https://symplified.biz/store-assets/symplified-logo-small.png}")
     private String symplifiedLogoPath;
     
-    @Value("${symplified.logo.path:https://symplified.biz/store-assets/deliverin-logo-small.png}")
+    @Value("${deliverin.logo.path:https://symplified.biz/store-assets/deliverin-logo-small.png}")
     private String deliverinLogoPath;
     
-    @Value("${symplified.logo.path:https://symplified.biz/store-assets/easydukan-logo-small.png}")
+    @Value("${easydukan.logo.path:https://symplified.biz/store-assets/easydukan-logo-small.png}")
     private String easydukanLogoPath;
 
     @PostMapping(path = {"/no-reply/orders"}, name = "post-email-noreply-orders")

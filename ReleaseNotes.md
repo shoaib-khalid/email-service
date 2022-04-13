@@ -1,8 +1,25 @@
 ##################################################
-# email-3.0.13-SNAPSHOT | 01-April-2022
+# email-3.0.14-SNAPSHOT | 13-April-2022
 ##################################################
+
 ### Code Changes:
 add staging domain : dev-my & dev-pk in code for logo path
+
+
+##################################################
+# email-3.0.13-SNAPSHOT | 05-April-2022
+##################################################
+### Code Changes:
+Bug fix for configuration in logo url with 3 different url :
+
+@Value("${symplified.logo.path:https://symplified.biz/store-assets/symplified-logo-small.png}")
+private String symplifiedLogoPath;
+
+@Value("${deliverin.logo.path:https://symplified.biz/store-assets/deliverin-logo-small.png}")
+private String deliverinLogoPath;
+
+@Value("${easydukan.logo.path:https://symplified.biz/store-assets/easydukan-logo-small.png}")
+private String easydukanLogoPath;
 
 
 ##################################################
