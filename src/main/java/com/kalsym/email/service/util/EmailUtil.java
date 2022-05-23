@@ -319,6 +319,9 @@ public class EmailUtil {
                 case PASSWORD_RESET:
                     emailContent = header + generatePasswordResetEmail(bodyContent, emailTemplatePath) + footer;
                     break;
+                case ACCOUNT_CREATED_NOTIFICATION:
+                    emailContent = header + generateAccountCreatedNotificationEmail(bodyContent, emailTemplatePath) + footer;
+                    break;
                 default:
                     break;
             }
@@ -341,6 +344,13 @@ public class EmailUtil {
         String body = fileContent(emailTemplatePath + "user-reset-password.html");
 
         body = body.replace("{{reset-link}}", bodyContent.getLink());
+
+        return body;
+    }
+    
+    public static String generateAccountCreatedNotificationEmail(AccountVerificationEmailBody bodyContent, String emailTemplatePath) throws FileNotFoundException {
+
+        String body = fileContent(emailTemplatePath + "user-created-notification.html");
 
         return body;
     }
