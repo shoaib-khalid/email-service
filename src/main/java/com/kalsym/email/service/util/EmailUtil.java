@@ -4,6 +4,7 @@ import com.kalsym.email.service.EmailServiceApplication;
 import com.kalsym.email.service.model.OrderEmailBodyContent;
 import com.kalsym.email.service.model.AccountVerificationEmailBody;
 import com.kalsym.email.service.model.order.OrderItem;
+import com.kalsym.email.service.model.Interest;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -365,6 +366,27 @@ public class EmailUtil {
 
         String footer = fileContent(emailTemplatePath + "footer.html");
 
+        emailContent = header + bodyContent + footer;
+
+        return emailContent;
+    }
+    
+    public static String generateInterestEmail(String emailTemplatePath, Interest body) throws FileNotFoundException {
+        String emailContent = "";
+
+        String header = fileContent(emailTemplatePath + "header.html");
+
+        header = header.replace("{{title}}", "New Interest");
+
+        String footer = fileContent(emailTemplatePath + "footer.html");
+        
+        String bodyContent = fileContent(emailTemplatePath + "interest.html");
+        header = header.replace("{{name}}", body.getName());
+        header = header.replace("{{email}}", body.getEmail());
+        header = header.replace("{{company-name}}", body.getCompanyName());
+        header = header.replace("{{contact-no}}", body.getContactNo());
+        header = header.replace("{{industry}}", body.getIndustry());
+        
         emailContent = header + bodyContent + footer;
 
         return emailContent;
