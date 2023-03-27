@@ -331,7 +331,8 @@ public class EmailController {
             helper.setTo(interestReceiverEmail);                                   
             Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email subject: " + message.getSubject(), "");
             
-            String emailBody = EmailUtil.generateInterestEmail(emailTemplatePath, body);
+            String logoPath=symplifiedLogoPath;
+            String emailBody = EmailUtil.generateInterestEmail(emailTemplatePath, logoPath, body);
             helper.setText(emailBody, true);
             
             mailSender.send(message); 
