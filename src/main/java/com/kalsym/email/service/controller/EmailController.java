@@ -316,7 +316,6 @@ public class EmailController {
     }
     
     @PostMapping(path = {"/no-reply/interest"}, name = "post-interest")
-    @PreAuthorize("hasAnyAuthority('post-interest', 'all')")
     public ResponseEntity<HttpReponse> postInterest(HttpServletRequest request,
             @RequestBody Interest body) {
         String logprefix = request.getRequestURI();
