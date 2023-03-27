@@ -1,4 +1,12 @@
 ##################################################
+# email-3.0.17-SNAPSHOT | 27-March-2023
+##################################################
+
+New template for register interest : interest.html
+New function to send email for register interest : /email/no-reply/interest
+
+
+##################################################
 # email-3.0.16-SNAPSHOT | 23-May-2022
 ##################################################
 

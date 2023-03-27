@@ -52,7 +52,10 @@ public class EmailController {
     
     @Value("${easydukan.logo.path:https://symplified.biz/store-assets/easydukan-logo-small.png}")
     private String easydukanLogoPath;
-
+    
+    @Value("${symplified.interest.email.to:ask@symplified.biz}")
+    private String interestReceiverEmail;
+    
     @PostMapping(path = {"/no-reply/orders"}, name = "post-email-noreply-orders")
     @PreAuthorize("hasAnyAuthority('post-email-noreply-orders', 'all')")
     public ResponseEntity<HttpReponse> postNoReplyEmailForOrders(HttpServletRequest request,
@@ -307,6 +310,41 @@ public class EmailController {
         }
 
         Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email sent to: " + Arrays.toString(body.getTo()), "");
+
+        response.setSuccessStatus(HttpStatus.OK);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+    
+    @PostMapping(path = {"/no-reply/interest"}, name = "post-interest")
+    @PreAuthorize("hasAnyAuthority('post-interest', 'all')")
+    public ResponseEntity<HttpReponse> postInterest(HttpServletRequest request,
+            @RequestBody Interest body) {
+        String logprefix = request.getRequestURI();
+        HttpReponse response = new HttpReponse(request.getRequestURI());
+        Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "body: " + body, "");
+
+        try {
+            MimeMessage message = mailSender.createMimeMessage();
+            message.setSubject("New Interest");
+            MimeMessageHelper helper;
+            helper = new MimeMessageHelper(message, true);             
+            helper.setFrom(noReplyFrom);
+            helper.setTo(interestReceiverEmail);                                   
+            Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email subject: " + message.getSubject(), "");
+            
+            String emailBody = EmailUtil.generateInterestEmail(emailTemplatePath, body);
+            helper.setText(emailBody, true);
+            
+            mailSender.send(message); 
+            
+            Logger.application.info(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email sent to: "+interestReceiverEmail, "");
+        } catch (Exception e) {
+            Logger.application.error(Logger.pattern, EmailServiceApplication.VERSION, logprefix, "email could not be send", "", e);
+            response.setErrorStatus(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
+
+        
 
         response.setSuccessStatus(HttpStatus.OK);
         return ResponseEntity.status(HttpStatus.OK).body(response);

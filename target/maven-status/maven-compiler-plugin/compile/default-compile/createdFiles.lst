@@ -2,6 +2,7 @@ com\kalsym\email\service\model\AccountVerificationEmailBody$ActionType.class
 com\kalsym\email\service\model\OrderEmailBodyContent.class
 com\kalsym\email\service\model\AccountVerificationEmailBody.class
 com\kalsym\email\service\model\Session.class
+com\kalsym\email\service\model\Interest.class
 com\kalsym\email\service\model\lalmove\Stop.class
 com\kalsym\email\service\configs\SwaggerConfig.class
 com\kalsym\email\service\model\OrderEmailBodyContent$OrderStatus.class
