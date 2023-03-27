@@ -371,21 +371,22 @@ public class EmailUtil {
         return emailContent;
     }
     
-    public static String generateInterestEmail(String emailTemplatePath, Interest body) throws FileNotFoundException {
+    public static String generateInterestEmail(String emailTemplatePath, String symplifiedLogoPath, Interest body) throws FileNotFoundException {
         String emailContent = "";
 
         String header = fileContent(emailTemplatePath + "header.html");
-
+        header = header.replace("{{store-logo}}", symplifiedLogoPath);
+        
         header = header.replace("{{title}}", "New Interest");
 
         String footer = fileContent(emailTemplatePath + "footer.html");
         
         String bodyContent = fileContent(emailTemplatePath + "interest.html");
-        header = header.replace("{{name}}", body.getName());
-        header = header.replace("{{email}}", body.getEmail());
-        header = header.replace("{{company-name}}", body.getCompanyName());
-        header = header.replace("{{contact-no}}", body.getContactNo());
-        header = header.replace("{{industry}}", body.getIndustry());
+        bodyContent = bodyContent.replace("{{name}}", body.getName());
+        bodyContent = bodyContent.replace("{{email}}", body.getEmail());
+        bodyContent = bodyContent.replace("{{company-name}}", body.getCompanyName());
+        bodyContent = bodyContent.replace("{{contact-no}}", body.getContactNo());
+        bodyContent = bodyContent.replace("{{industry}}", body.getIndustry());
         
         emailContent = header + bodyContent + footer;
 
