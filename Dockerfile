@@ -8,7 +8,7 @@ COPY target/libs /home/docker/Software/libs
 RUN chmod +x /home/docker/Software/*.jar 
 
 WORKDIR /home/docker/Software
-EXPOSE 1201
+EXPOSE 2001
 CMD java \
     -Dspring.config.location=/home/docker/Software/ \
     -jar /home/docker/Software/*.jar
