@@ -21,7 +21,7 @@ From your local pc run
 ```bash
 # make sure you are in correct working directory
 [user@localpc]$ pwd
-/home/user/path-to-your-project/user-service
+/home/user/path-to-your-project/email-service
 ...
 ..
 [user@localpc]$ docker run -it --rm --platform linux/amd64 -v ./:/home/docker/Software -w /home/docker/Software openjdk:8-alpine sh
@@ -42,7 +42,7 @@ After the process done you should see folder `target` will have the following fi
     ├── libs/
     ├── maven-archiver
     ├── maven-status
-    └── user-service-<version>.jar
+    └── email-service-<version>.jar
 ```
 
 Exit the docker shell 
