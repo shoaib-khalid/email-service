@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.kalsym.email.service.EmailServiceApplication;
 import com.kalsym.email.service.util.Logger;
 import java.util.Arrays;
-import java.util.Date;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,9 +27,6 @@ import com.kalsym.email.service.util.EmailUtil;
 @RestController()
 @RequestMapping("/email")
 public class EmailController {
-
-    @Autowired
-    private JavaMailSender javaMailSender;
 
     @Autowired
     private JavaMailSender mailSender;
